@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/white">
-
+            <!--标题-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
                 android:textColor="@color/color_text_03"
                 android:textSize="14sp" />
 
-
+            <!--            关闭按钮-->
             <ImageView
                 android:id="@+id/close_img"
                 android:layout_width="25dp"
@@ -32,7 +32,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="15dp"
                 android:background="@drawable/ic_close" />
-
+            <!--            下划线-->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -45,28 +45,32 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="41dp"
+            android:layout_height="wrap_content"
             android:background="@color/white">
 
             <LinearLayout
                 android:id="@+id/choose_tab"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/province_tv"
                     style="@style/tab"
-                    android:text="请选择" />
+                    android:layout_width="match_parent"
+                    android:gravity="center" />
 
                 <TextView
                     android:id="@+id/city_tv"
-                    style="@style/tab" />
+                    style="@style/tab"
+                    android:layout_width="match_parent"
+                    android:gravity="center" />
 
                 <TextView
                     android:id="@+id/area_tv"
-                    style="@style/tab" />
+                    style="@style/tab"
+                    android:layout_width="match_parent"
+                    android:gravity="center" />
 
             </LinearLayout>
 

@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.ihidea.as.citypicker.R;
 import com.lljjcoder.Interface.OnCityItemClickListener;
 import com.lljjcoder.bean.CityBean;
@@ -15,6 +17,11 @@ import com.lljjcoder.bean.ProvinceBean;
 import com.lljjcoder.citywheel.CityConfig;
 import com.lljjcoder.style.cityjd.JDCityConfig;
 import com.lljjcoder.style.cityjd.JDCityPicker;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class CitypickerJDActivity extends AppCompatActivity {
     JDCityPicker cityPicker;
@@ -63,7 +70,17 @@ public class CitypickerJDActivity extends AppCompatActivity {
 
         cityPicker = new JDCityPicker();
         //初始化数据
-        cityPicker.init(this);
+        InputStream inputStream = null;
+        try {
+            inputStream = this.getAssets().open("address_info");
+            int lenght = inputStream.available();
+            byte[] buffer = new byte[lenght];
+            inputStream.read(buffer);
+            String addressStr = new String(buffer, "utf8");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         //设置JD选择器样式位只显示省份和城市两级
         cityPicker.setConfig(jdCityConfig);
         cityPicker.setOnCityItemClickListener(new OnCityItemClickListener() {

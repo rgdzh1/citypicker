@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -114,8 +115,7 @@ public class JDCityPicker {
         mCloseImg = (ImageView) popview.findViewById(R.id.close_img);
         mSelectedLine = (View) popview.findViewById(R.id.selected_line);
 
-        popwindow = new PopupWindow(popview, LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
+        popwindow = new PopupWindow(popview, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         popwindow.setAnimationStyle(R.style.AnimBottom);
         popwindow.setBackgroundDrawable(new ColorDrawable());
         popwindow.setTouchable(true);
@@ -257,16 +257,23 @@ public class JDCityPicker {
 
     }
 
+    public void init(Context context) {
+        init(context, null);
+    }
+
     /**
      * 初始化，默认解析城市数据，提交加载速度
      */
-    public void init(Context context) {
+    public void init(Context context, String cityJson) {
         this.context = context;
         parseHelper = new CityParseHelper();
-
         //解析初始数据
         if (parseHelper.getProvinceBeanArrayList().isEmpty()) {
-            parseHelper.initData(context);
+            if (TextUtils.isEmpty(cityJson)) {
+                parseHelper.initData(context);
+            } else {
+                parseHelper.initData(context, cityJson);
+            }
         }
     }
 

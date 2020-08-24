@@ -20,7 +20,7 @@ public class CityBean implements Parcelable {
     
     private String name; /*东城区*/
 
-    @SerializedName("childs")
+//    @SerializedName("childs")
     private ArrayList<DistrictBean> cityList;
 
     @Override
